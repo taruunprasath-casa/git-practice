@@ -1,10 +1,6 @@
 import { data } from "./data";
 
-enum Delimeters{
-  UNDERSCORE = "_",
-  DOT = ".",
-  SLASH = "/"
-}
+let delimeter = "_";
 
 function split(parts: string[], value: any): Record<string, any> {
   const result: Record<string, any> = {};
@@ -12,9 +8,9 @@ function split(parts: string[], value: any): Record<string, any> {
 
   parts.forEach((part, index) => {
     if (index === parts.length - 1) {
-      current[part] = value; 
+      current[part] = value;
     } else {
-      if (typeof current[part] !== 'object' || current[part] === null) {
+      if (typeof current[part] !== "object" || current[part] === null) {
         current[part] = {};
       }
       current = current[part];
@@ -24,8 +20,10 @@ function split(parts: string[], value: any): Record<string, any> {
   return result;
 }
 
-
-function setPathToTheKey(target: Record<string, any>, source: Record<string, any>): void {
+function setPathToTheKey(
+  target: Record<string, any>,
+  source: Record<string, any>
+): void {
   for (const key in source) {
     if (
       key in target &&
@@ -43,7 +41,7 @@ function splitObject(object: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
   for (const key in object) {
-    const nested = split(key.split(Delimeters.UNDERSCORE), object[key]);
+    const nested = split(key.split(delimeter), object[key]);
     setPathToTheKey(result, nested);
   }
 
