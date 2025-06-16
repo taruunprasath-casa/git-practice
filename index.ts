@@ -1,6 +1,10 @@
 import { data } from "./data";
 
-let delimeter = "_";
+enum Delimeter {
+  Underscore = "_",
+  Dot = ".",
+  Slash = "/",
+};
 
 function split(parts: string[], value: any): Record<string, any> {
   const result: Record<string, any> = {};
@@ -41,7 +45,7 @@ function splitObject(object: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
   for (const key in object) {
-    const nested = split(key.split(delimeter), object[key]);
+    const nested = split(key.split(Delimeter.Underscore), object[key]);
     setPathToTheKey(result, nested);
   }
 
