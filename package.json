@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+  "dev": "nodemon",
+  "start": "tsc && node dist/index.js"
+}
+}
